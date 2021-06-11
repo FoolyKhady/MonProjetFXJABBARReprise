@@ -73,7 +73,7 @@ public class UserDAO {
         String sql="INSERT INTO utilisateur VALUES(null, ?,?,?,?,? )";
         try {
             dbc.myPrepardQuery(sql);
-            Object parm[]={
+            Object[] parm={
                     user.getLogin(),
                     user.getPassword(),
                     user.getNomComplet(),

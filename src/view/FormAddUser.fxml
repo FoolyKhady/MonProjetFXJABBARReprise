@@ -21,23 +21,24 @@
       <Label layoutX="35.0" layoutY="152.0" text="Photo" />
       <Label layoutX="35.0" layoutY="192.0" text="Profil" />
       <Button layoutX="35.0" layoutY="226.0" mnemonicParsing="false" onAction="#NouveauHandle" prefHeight="25.0" prefWidth="66.0" text="Nouveau" />
-      <Button layoutX="114.0" layoutY="226.0" mnemonicParsing="false" onAction="#EnregistrerHandle" prefHeight="25.0" prefWidth="91.0" text="Enregistrer" />
-      <Button layoutX="221.0" layoutY="226.0" mnemonicParsing="false" onAction="#ModifierHandle" prefHeight="25.0" prefWidth="91.0" text="Modifier" />
-      <Button layoutX="331.0" layoutY="226.0" mnemonicParsing="false" onAction="#SupprimerHandle" prefHeight="25.0" prefWidth="91.0" text="Supprimer" />
-      <TableView fx:id="AjouterUserTbview" layoutX="35.0" layoutY="272.0" prefHeight="200.0" prefWidth="387.0">
+      <Button fx:id="saveBtn" layoutX="114.0" layoutY="226.0" mnemonicParsing="false" onAction="#EnregistrerHandle" prefHeight="25.0" prefWidth="91.0" text="Enregistrer" />
+      <Button fx:id="updateBtn" layoutX="221.0" layoutY="226.0" mnemonicParsing="false" onAction="#ModifierHandle" prefHeight="25.0" prefWidth="91.0" text="Modifier" />
+      <Button fx:id="deleteBtn" layoutX="331.0" layoutY="226.0" mnemonicParsing="false" onAction="#SupprimerHandle" prefHeight="25.0" prefWidth="91.0" text="Supprimer" />
+      <TableView fx:id="AjouterUserTbview" layoutX="35.0" layoutY="272.0" prefHeight="200.0" prefWidth="554.0">
         <columns>
           <TableColumn fx:id="IdTbclum" prefWidth="34.0" text="ID" />
-          <TableColumn fx:id="LoginTbclum" prefWidth="85.0" text="Login" />
-            <TableColumn fx:id="NomCompletTclum" prefWidth="115.0" text="Nom Complet" />
-            <TableColumn fx:id="PhotoTbclum" prefWidth="75.0" text="Photo" />
-            <TableColumn fx:id="ProfilTclum" prefWidth="77.0" text="Profil" />
+          <TableColumn fx:id="LoginTbclum" prefWidth="74.0" text="Login" />
+            <TableColumn fx:id="PasswordTclum" prefWidth="75.0" text="Password" />
+            <TableColumn fx:id="NomCompletTclum" prefWidth="192.0" text="Nom Complet" />
+            <TableColumn fx:id="PhotoTbclum" prefWidth="98.0" text="Photo" />
+            <TableColumn fx:id="ProfilTclum" prefWidth="79.0" text="Profil" />
         </columns>
       </TableView>
       <TextField fx:id="LoginTxfld" layoutX="225.0" layoutY="40.0" prefHeight="25.0" prefWidth="197.0" />
       <TextField fx:id="PasswordTxfld" layoutX="225.0" layoutY="75.0" prefHeight="25.0" prefWidth="197.0" />
       <TextField fx:id="NomPrenomsTxfld" layoutX="226.0" layoutY="110.0" prefHeight="25.0" prefWidth="197.0" />
       <TextField fx:id="PhotoTxfld" layoutX="226.0" layoutY="148.0" prefHeight="25.0" prefWidth="197.0" />
-      <Button layoutX="434.0" layoutY="148.0" mnemonicParsing="false" onAction="#ParcourirHandle" prefHeight="25.0" prefWidth="76.0" text="Parcourir" />
+      <Button layoutX="434.0" layoutY="148.0" mnemonicParsing="false" onAction="#ParcourirHandle" prefHeight="25.0" prefWidth="157.0" text="Parcourir" />
       <ComboBox fx:id="ProfilCbox" layoutX="227.0" layoutY="188.0" prefHeight="25.0" prefWidth="197.0" />
       <ImageView fx:id="photoImgV" fitHeight="103.0" fitWidth="169.0" layoutX="463.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
    </children>
