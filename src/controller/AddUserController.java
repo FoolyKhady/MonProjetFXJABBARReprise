@@ -21,6 +21,7 @@ import service.UserDAO;
 import model.Profil;
 import model.User;
 import main.Main;
+import utils.Utilitaires;
 
 
 import javax.imageio.ImageIO;
@@ -85,23 +86,36 @@ public class AddUserController implements Initializable {
     }
 
     @FXML
-    void EnregistrerHandle(ActionEvent event) {
+    void EnregistrerHandle(ActionEvent event) throws Exception {
+        if (userDAO.findUserByLogin(LoginTxfld.getText().trim())!=null && selectedUser==null){
+            Utilitaires.showMessage("Gestion des utilisaturs","Ajout d'un utilisateur",
+                    "Un utilisateur avec ce login existe deja",Alert.AlertType.WARNING);
+            return;
+
+        }
         User user = new User();
+        int type=0;
+        String message="Utilisateur ajouté";
+        if (selectedUser!= null){
+            user=selectedUser;
+            type=1;
+            message="Utilisateur modifié";
+        }
         user.setLogin(LoginTxfld.getText());
         user.setPassword(PasswordTxfld.getText());
         user.setNomComplet(NomPrenomsTxfld.getText());
         user.setPhoto(PhotoTxfld.getText());
         user.setProfil(ProfilCbox.getValue());
         try{
-            userDAO.addUser(user);
+
+            userDAO.addUser(user,type);
             File out = new File(dirName+file.getName());
             ImageIO.write(bim,"png",out);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Gestion des utilisaturs");
-            alert.setHeaderText("Ajout d'un utilisateur");
-            alert.setContentText("Utilsateur ajouter" );
-            alert.showAndWait();
-            users.add(user);
+            Utilitaires.showMessage("Gestion des utilisaturs","Ajout d'un utilisateur",
+                    message,Alert.AlertType.INFORMATION);
+            if (type==0){
+                users.add(user);
+            }
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -115,7 +129,9 @@ public class AddUserController implements Initializable {
     }
 
     @FXML
-    void ModifierHandle(ActionEvent event) {
+    void ModifierHandle(ActionEvent event) throws Exception {
+        EnregistrerHandle(event);
+
 
     }
 
@@ -139,8 +155,6 @@ public class AddUserController implements Initializable {
             photoImgV.setImage(image);
             PhotoTxfld.setText(file.getName());
         }
-
-
 
 
     }
@@ -197,6 +211,7 @@ public class AddUserController implements Initializable {
             }
         });
     }
+    private User selectedUser = null;
     private void displayUser(User u)   {
         LoginTxfld.setText(u.getLogin());
         PasswordTxfld.setText(u.getPassword());
@@ -206,6 +221,7 @@ public class AddUserController implements Initializable {
         }else {
             file=new File(dirName+u.getPhoto());
         }
+        selectedUser=u;
 
 
         try {
@@ -219,12 +235,10 @@ public class AddUserController implements Initializable {
             e.printStackTrace();
         }
 
-
     }
     private void activerDesactiverBtn(boolean active){
         saveBtn.setDisable(active);
         updateBtn.setDisable(!active);
         deleteBtn.setDisable(!active);
-
     }
 }

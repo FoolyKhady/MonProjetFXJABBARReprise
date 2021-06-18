@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfilDAO {
+public class ProfilDAO implements IProfil {
     private DataBaseHelper dbc;
     public ProfilDAO(){
         dbc = new DataBaseHelper();
